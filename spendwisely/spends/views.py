@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+from spends.models import SpendCategory
+from spends.serializers import SpendCategorySerializer
+
+
+class SpendCategoryViewSet(ModelViewSet):
+    queryset = SpendCategory.objects.all()
+    serializer_class = SpendCategorySerializer
+
