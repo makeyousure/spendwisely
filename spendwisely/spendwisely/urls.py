@@ -15,15 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from rest_framework.routers import SimpleRouter
 
-from spends.views import SpendCategoryViewSet
-
-router = SimpleRouter()
-router.register(r'spend-category', SpendCategoryViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-urlpatterns += router.urls
+
