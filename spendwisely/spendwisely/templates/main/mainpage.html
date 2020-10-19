@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>Основной</title>
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <div class="welcome">
+            <h2>Good day, {{ user.first_name }} @кнопка выйти</h2>
+            <h5>Today you added "count" expenses for a total of "SUM" rubles</h5>
+        </div>
+    </header>
+    {% block content %}
+        <div class="accounts">
+            <h3>Your Accounts</h3>
+            {% for account in accounts %}
+                {{ account.name }} {{ account.amount }} <a href="{% url 'delete_acc' account.id %}">Delete?</a>
+                <p></p>
+            {% endfor %}
+            <a href="{% url 'add_account' %}">Add account</a>
+        </div>
+
+        <div class="operations">
+            <a href="{% url 'incomes_page' %}">ДОХОДЫ</a>
+            <a href="#">РАСХОДЫ</a>
+        </div>
+    {% endblock %}
+</body>
+</html>

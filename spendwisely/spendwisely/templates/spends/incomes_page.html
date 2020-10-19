@@ -1,0 +1,14 @@
+{% extends 'main/mainpage.html' %}
+{% block title %}
+    <title>Incomes</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'main_page' %}">MAIN</a>
+    <p></p>
+    {% for category in categories %}
+        {{ category.name }} <a href="{% url 'delete_income_category' category.id %}">Delete?</a>
+        <p></p>
+    {% endfor %}
+    <a href="{% url 'create_income_category' %}">Add income category</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'main/mainpage.html' %}
+{% block title %}
+    <title>add income category</title>
+{% endblock %}
+
+{% block content %}
+    <form method="post", action="">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Create">
+    </form>
+{% endblock %}

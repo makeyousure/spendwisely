@@ -47,7 +47,7 @@ class Account(models.Model):
 class IncomeOperation(models.Model):
     income_date = models.DateField(verbose_name="Дата", default=timezone.now())
     income_article = models.ForeignKey(Income, verbose_name="Статья дохода", on_delete=models.DO_NOTHING)
-    income_acount = models.ForeignKey(Account, verbose_name="Счет зачисления", on_delete=models.DO_NOTHING)
+    income_acount = models.ForeignKey(Account, verbose_name="Счет зачисления", on_delete=models.SET_NULL, null=True, blank=True)
     income_amount = models.DecimalField(verbose_name="Сумма дохода", max_digits=10, decimal_places=2, default=0)
 
     class Meta:
@@ -57,7 +57,7 @@ class IncomeOperation(models.Model):
 class SpendOperation(models.Model):
     spend_date = models.DateField(verbose_name="Дата", default=timezone.now())
     spend_article = models.ForeignKey(SpendArticle, verbose_name="Статья расхода", on_delete=models.DO_NOTHING)
-    spend_acount = models.ForeignKey(Account, verbose_name="Счет списания", on_delete=models.DO_NOTHING)
+    spend_acount = models.ForeignKey(Account, verbose_name="Счет списания", on_delete=models.SET_NULL, null=True, blank=True)
     spend_amount = models.DecimalField(verbose_name="Сумма списания", max_digits=10, decimal_places=2, default=0)
 
     class Meta:
