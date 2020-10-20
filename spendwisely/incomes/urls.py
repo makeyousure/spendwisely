@@ -1,6 +1,6 @@
 from django.urls import path
 
-from spends import views
+from incomes import views
 
 urlpatterns = [
     path('create-income-category', views.add_income_category, name='create_income_category'),

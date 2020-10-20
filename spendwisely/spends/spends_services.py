@@ -1,5 +1,0 @@
-from spends.models import *
-
-
-
-

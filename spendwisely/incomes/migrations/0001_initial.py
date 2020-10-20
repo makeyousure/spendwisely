@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50, verbose_name='Название статьи расходов')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='spends.spendcategory')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='incomes.spendcategory')),
             ],
             options={
                 'verbose_name_plural': 'Статьи расходов',

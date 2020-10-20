@@ -1,6 +1,6 @@
 from django import forms
 
-from spends.models import Account
+from incomes.models import Account
 
 
 class CreateAccForm(forms.ModelForm):

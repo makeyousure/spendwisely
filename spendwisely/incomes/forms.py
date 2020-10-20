@@ -1,6 +1,6 @@
 from django import forms
 
-from spends.models import Income
+from incomes.models import Income
 
 
 class CreateIncomeCategory(forms.ModelForm):

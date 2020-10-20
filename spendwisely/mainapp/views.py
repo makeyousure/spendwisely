@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from mainapp.forms import CreateAccForm
-from spends.models import Account
+from incomes.models import Account
 
 
 def show_main_page(request):

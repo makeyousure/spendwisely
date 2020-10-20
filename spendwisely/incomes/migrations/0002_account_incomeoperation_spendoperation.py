@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('spends', '0001_initial'),
+        ('incomes', '0001_initial'),
     ]
 
     operations = [
@@ -29,8 +29,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('spend_date', models.DateField(default=datetime.date(2020, 10, 11), verbose_name='Дата')),
                 ('spend_amount', models.DecimalField(decimal_places=2, default=0, max_digits=10, verbose_name='Сумма списания')),
-                ('spend_acount', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='spends.account', verbose_name='Счет списания')),
-                ('spend_article', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='spends.spendarticle', verbose_name='Статья расхода')),
+                ('spend_acount', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='incomes.account', verbose_name='Счет списания')),
+                ('spend_article', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='incomes.spendarticle', verbose_name='Статья расхода')),
             ],
             options={
                 'verbose_name_plural': 'Расходные операции',
@@ -42,8 +42,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('income_date', models.DateField(default=datetime.date(2020, 10, 11), verbose_name='Дата')),
                 ('income_amount', models.DecimalField(decimal_places=2, default=0, max_digits=10, verbose_name='Сумма дохода')),
-                ('income_acount', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='spends.account', verbose_name='Счет зачисления')),
-                ('income_article', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='spends.income', verbose_name='Статья дохода')),
+                ('income_acount', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='incomes.account', verbose_name='Счет зачисления')),
+                ('income_article', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='incomes.income', verbose_name='Статья дохода')),
             ],
             options={
                 'verbose_name_plural': 'Доходные операции',

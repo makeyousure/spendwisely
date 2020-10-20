@@ -9,14 +9,14 @@ from django.utils.timezone import utc
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('spends', '0003_auto_20201011_1714'),
+        ('incomes', '0003_auto_20201011_1714'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='incomeoperation',
             name='income_acount',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='spends.account', verbose_name='Счет зачисления'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='incomes.account', verbose_name='Счет зачисления'),
         ),
         migrations.AlterField(
             model_name='incomeoperation',
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='spendoperation',
             name='spend_acount',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='spends.account', verbose_name='Счет списания'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='incomes.account', verbose_name='Счет списания'),
         ),
         migrations.AlterField(
             model_name='spendoperation',
