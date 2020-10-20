@@ -1,0 +1,14 @@
+{% extends 'main/mainpage.html' %}
+{% block title %}
+    <title>add spend article</title>
+{% endblock %}
+
+{% block content %}
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ add_article }}
+        <input type="submit" value="Create">
+    </form>
+    <p></p>
+    <a href="{% url 'spend_page' %}">Back</a>
+{% endblock %}

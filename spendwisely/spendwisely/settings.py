@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'mainapp',
     'incomes',
+    'spends',
 ]
 
 MIDDLEWARE = [

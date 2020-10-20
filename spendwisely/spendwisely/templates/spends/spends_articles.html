@@ -1,0 +1,19 @@
+{% extends 'main/mainpage.html' %}
+
+{% block title %}
+<title>{{ category_name }}</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'main_page' %}">MAIN</a>
+    <h3>{{ category_name }}</h3>
+    <hr>
+    {% for article in articles %}
+        {{ article.name }} <a href="{% url 'delete_spend_article' article.id %}">Delete?</a>
+        <p></p>
+    {% endfor %}
+    <p></p>
+    <a href="{% url 'add_spend_article' %}">add spen article</a>
+    <p></p>
+    <a href="{% url 'spend_page' %}">Back</a>
+{% endblock %}
