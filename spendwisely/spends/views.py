@@ -21,18 +21,18 @@ def show_articles_filtered_by_category(request, spend_category_id):
 def delete_spend_category(request, spend_category_id):
     delete_spend_category_by_id = SpendCategory.objects.filter(id=spend_category_id).delete()
     context = {'delete_spend_category': delete_spend_category_by_id}
-    return render(request, template_name='main/deleted_account.html', context=context)
+    return render(request, template_name='main/deleted.html', context=context)
 
 
 def add_spend_category(request):
     if request.method == "POST":
-        add_form = AddSpendCategory(request.POST)
-        if add_form.is_valid():
-            add_form.save()
+        add_form_spend_category = AddSpendCategory(request.POST)
+        if add_form_spend_category.is_valid():
+            add_form_spend_category.save()
             return redirect('spend_page')
     else:
-        add_form = AddSpendCategory()
-    context = {'add_form': add_form}
+        add_form_spend_category = AddSpendCategory()
+    context = {'add_form_spend_category': add_form_spend_category}
     return render(request, template_name='spends/add_spend_category.html', context=context)
 
 
@@ -51,6 +51,6 @@ def add_spend_article(request):
 def delete_spend_article(request, spend_article_id):
     delete_spend_article_by_id = SpendArticle.objects.filter(id=spend_article_id).delete()
     context = {'delete_article': delete_spend_article_by_id}
-    return render(request, template_name="main/deleted_account.html", context=context)
+    return render(request, template_name="main/deleted.html", context=context)
 
 

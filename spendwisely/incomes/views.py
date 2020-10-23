@@ -13,16 +13,16 @@ def show_all_inclome_category(request):
 def delete_someone_category_of_income(request, category_id):
     delete_category_by_id = Income.objects.filter(id=category_id).delete()
     context = {'delete_category': delete_category_by_id}
-    return render(request, 'incomes/income_deleted_category.html', context=context)
+    return render(request, 'main/deleted.html', context=context)
 
 
 def add_income_category(request):
     if request.method == "POST":
-        form = CreateIncomeCategory(request.POST)
-        if form.is_valid():
-            form.save()
+        add_form_income = CreateIncomeCategory(request.POST)
+        if add_form_income.is_valid():
+            add_form_income.save()
             return redirect('incomes_page')
     else:
-        form = CreateIncomeCategory()
-    return render(request, template_name='incomes/add_income_category.html', context={'form': form})
+        add_form_income = CreateIncomeCategory()
+    return render(request, template_name='incomes/add_income_category.html', context={'add_form_income': add_form_income})
 

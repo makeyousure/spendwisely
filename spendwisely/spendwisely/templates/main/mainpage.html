@@ -1,32 +1,81 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% endblock %}
     {% block title %}
-        <title>Основной</title>
+        <title>Основная</title>
     {% endblock %}
 </head>
+
+
 <body>
+
     <header>
+
         <div class="welcome">
-            <h2>Good day, {{ user.first_name }} @кнопка выйти</h2>
-            <h5>Today you added "count" expenses for a total of "SUM" rubles</h5>
-        </div>
-    </header>
-    {% block content %}
-        <div class="accounts">
-            <h3>Your Accounts</h3>
-            {% for account in accounts %}
-                {{ account.name }} {{ account.amount }} <a href="{% url 'delete_acc' account.id %}">Delete?</a>
-                <p></p>
-            {% endfor %}
-            <a href="{% url 'add_account' %}">Add account</a>
+            <p class="hello">Добрый день, {{ user.first_name }}</p>
+            <p class="button-green" href="#">EXIT</p>
         </div>
 
-        <div class="operations">
-            <a href="{% url 'incomes_page' %}">ДОХОДЫ</a>
-            <a href="{% url 'spend_page' %}">РАСХОДЫ</a>
+        <div class="transaction_info">
+            <p>Сегодня ты внес "число" расходов на сумму "сумма" рублей</p>
         </div>
+        
+    </header>
+
+    <div class="menu">
+        <div class="element_menu">
+            <a href="{% url 'main_page' %}">Основная</a>
+        </div>
+
+        <div class="element_menu">
+            <a href="{% url 'incomes_page' %}">Доходы</a>
+        </div>
+
+        <div class="element_menu">
+            <a href="{% url 'spend_page' %}">расходы</a>
+        </div>
+        
+    </div>
+
+    {% block content %}
+
+        <div class="block_for_content">
+            
+            <p class="block_for_content_p">Твои счета</p>
+            
+            <div class="list_of_content">
+                {% for account in accounts %}
+                    <div class="element">
+
+                        <div class="element_name">
+                            {{ account.name }}
+                        </div>
+                            
+                        <div class="element_amount">
+                            {{ account.amount }} руб.
+                        </div>
+
+                        <div class="element_delete" title="Отменить действие нельзя">
+                            <a href="{% url 'delete_acc' account.id %}">Удалить</a>
+                        </div>
+                        
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="add_element">
+            <hr noshade="" color="#005239">
+            <a href="{% url 'add_account' %}">Добавить новый счет</a>
+        </div>
+
     {% endblock %}
 </body>
+
+
 </html>

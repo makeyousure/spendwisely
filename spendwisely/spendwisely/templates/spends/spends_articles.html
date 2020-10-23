@@ -1,19 +1,43 @@
 {% extends 'main/mainpage.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/income_and_spend.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
 
 {% block title %}
-<title>{{ category_name }}</title>
+    <title>{{ category_name }}</title>
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'main_page' %}">MAIN</a>
-    <h3>{{ category_name }}</h3>
-    <hr>
-    {% for article in articles %}
-        {{ article.name }} <a href="{% url 'delete_spend_article' article.id %}">Delete?</a>
-        <p></p>
-    {% endfor %}
-    <p></p>
-    <a href="{% url 'add_spend_article' %}">add spen article</a>
-    <p></p>
-    <a href="{% url 'spend_page' %}">Back</a>
+
+    <div class="block_for_content">
+
+        <p class="block_for_content_p">{{ category_name }}</p>
+
+        <div class="list_of_content">
+            {% for article in articles %}
+
+                    <div class="element">
+                        <div class="special_name">
+                            {{ article.name }}
+                        </div>
+
+                        <div class="special_delete" title="Отменить действие нельзя">
+                            <a href="{% url 'delete_spend_article' article.id %}">Удалить</a>
+                        </div>
+
+                    </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div class="add_element">
+        <hr noshade="" color="#005239">
+        <a href="{% url 'add_spend_article' %}">Добавить статью категории {{ category_name }}</a>
+    </div>
+    
 {% endblock %}

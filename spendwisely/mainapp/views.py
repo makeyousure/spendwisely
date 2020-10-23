@@ -14,7 +14,7 @@ def show_main_page(request):
 def delete_some_account(request, account_id):
     delete_account_by_id = Account.objects.filter(id=account_id).delete()
     context = {"delete": delete_account_by_id}
-    return render(request, template_name='main/deleted_account.html', context=context)
+    return render(request, template_name='main/deleted.html', context=context)
 
 
 def add_account(request):

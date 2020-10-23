@@ -1,14 +1,38 @@
 {% extends 'main/mainpage.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/income_and_spend.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
 {% block title %}
-    <title>Incomes</title>
+    <title>Доходы</title>
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'main_page' %}">MAIN</a>
-    <p></p>
-    {% for category in categories %}
-        {{ category.name }} <a href="{% url 'delete_income_category' category.id %}">Delete?</a>
-        <p></p>
-    {% endfor %}
-    <a href="{% url 'create_income_category' %}">Add income category</a>
+    <div class="block_for_content">
+                
+        <p class="block_for_content_p">Актуальные доходы</p>
+        
+        <div class="list_of_content">
+            {% for category in categories %}
+                <div class="element">
+
+                    <div class="special_name">
+                        {{ category.name }}
+                    </div>
+
+                    <div class="special_delete" title="Отменить действие нельзя">
+                        <a href="{% url 'delete_income_category' category.id %}">Удалить</a>
+                    </div>
+                    
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="add_element">
+        <hr noshade="" color="#005239">
+        <a href="{% url 'create_income_category' %}">Добавить категорию дохода</a>
+    </div>
 {% endblock %}

@@ -1,12 +1,20 @@
 {% extends 'main/mainpage.html' %}
 {% block title %}
-    <title>add income category</title>
+    <title>Добавление дохода</title>
 {% endblock %}
 
 {% block content %}
-    <form method="post", action="">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Create">
-    </form>
+    <div class="create_element_form">
+        <form method="post", action="" class="added_form">
+            {% csrf_token %}
+                <div class="form_field">
+                    {{ add_form_income }}
+                </div>
+            <div class="form_button">
+                <input type="submit" value="Добавить">
+            </div>
+            
+        </form>
+    </div>
+    
 {% endblock %}
