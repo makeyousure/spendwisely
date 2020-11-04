@@ -1,7 +1,8 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
-from incomes.models import SpendCategory, SpendArticle
-from spends.forms import AddSpendCategory, AddSpendArticle
+from incomes.models import SpendCategory, SpendArticle, SpendOperation
+from spends.forms import AddSpendCategory, AddSpendArticle, CreateSpendOperation
 
 
 def show_all_spend_category(request):
@@ -53,4 +54,19 @@ def delete_spend_article(request, spend_article_id):
     context = {'delete_article': delete_spend_article_by_id}
     return render(request, template_name="main/deleted.html", context=context)
 
+
+def show_and_add_expences_operation(request):
+    if request.method == "POST":
+        add_spend_operation_form = CreateSpendOperation(request.POST)
+        if add_spend_operation_form.is_valid():
+            add_spend_operation_form.save()
+            return redirect('list_of_spend_operation')
+    else:
+        add_spend_operation_form = CreateSpendOperation()
+    all_spend_operations = SpendOperation.objects.all().order_by('-spend_date')
+    paginator = Paginator(all_spend_operations, 10)
+    page_number = request.GET.get('page')
+    spends_pages = paginator.get_page(page_number)
+    context = {"spends_operations": spends_pages, 'add_spend_form': add_spend_operation_form}
+    return render(request, template_name='spends/spends_operations.html', context=context)
 

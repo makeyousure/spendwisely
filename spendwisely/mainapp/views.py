@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 
 from mainapp.forms import CreateAccForm
 from incomes.models import Account
+from mainapp.main_services import set_current_amount_of_account
 
 
 def show_main_page(request):
@@ -26,4 +27,3 @@ def add_account(request):
     else:
         form = CreateAccForm()
     return render(request, template_name='main/add_account.html', context={'form': form})
-

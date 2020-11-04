@@ -1,5 +1,0 @@
-from incomes.models import *
-
-
-
-

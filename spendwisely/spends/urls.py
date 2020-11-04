@@ -1,8 +1,9 @@
-from django.urls import path, include
+from django.urls import path
 
 from spends import views
 
 urlpatterns = [
+    path('spend-operations/', views.show_and_add_expences_operation, name='list_of_spend_operation'),
     path('article/<str:spend_category_id>/', views.show_articles_filtered_by_category, name='show_article'),
     path('delete-spend-article/<int:spend_article_id>/', views.delete_spend_article, name='delete_spend_article'),
     path('create-spend-article/', views.add_spend_article, name='add_spend_article'),

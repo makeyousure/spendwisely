@@ -1,0 +1,84 @@
+{% extends 'main/mainpage.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/income_operations.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+
+{% block title %}
+    <title>Доходные операции</title>
+{% endblock %}
+
+{% block content %}
+    
+    <div class="main_conteiner">
+
+        <div class="creation_operation_form">
+            <form method="post" action="">
+                {% csrf_token %}
+                
+                {% for field in add_income_form %}
+                    {{ field }}
+                {% endfor %}
+                <input type="submit" value="ADD" class="operation_form_button">
+            </form>
+        </div>
+
+        <div class="operations_list_conteiner">
+
+            {% for opeartion in income_operarions %}
+                <hr class="separator_operation_string" noshade="">
+                <div class="operation_string_conteiner">
+                    
+                    <div class="operation_date">
+                        {{ opeartion.income_date|date:"d.m.Y" }}
+                    </div>
+                    
+                    <div class="operation_article">
+                        {{ opeartion.income_article }}
+                    </div>
+                    
+                    <div class="operation_acount">
+                        {{ opeartion.income_acount }}
+                    </div>
+                    
+                    <div class="operation_amount">
+                        {{ opeartion.income_amount }}
+                    </div>
+                    
+                    <div class="operation_comment">
+                        {{ opeartion.comment_for_income_operation }}
+                    </div>
+                    
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+
+            {% if income_operarions.number != 1 %}
+                <a href="?page=1"> В начало</a>
+            {% else %}
+            <a href="?page={{ page }}">{{ page }}</a>
+            {% endif %}
+            
+            {% if income_operarions.has_previous %}
+                <a href="?page={{ income_operarions.previous_page_number }}">Назад</a>
+            {% endif %}
+
+            {% for page in income_operarions.paginator.page_range %}
+
+                <a href="?page={{ page }}">{{ page }}</a>
+
+            {% endfor %}
+
+            {% if income_operarions.has_next %}
+                <a href="?page={{ income_operarions.next_page_number }}">Дальше</a>
+                <a href="?page={{ income_operarions.paginator.num_pages }}">Последняя</a>
+            {% endif %}
+
+            Всего {{ income_operarions.paginator.num_pages  }}
+        </div>
+    </div>
+    {% endblock %}

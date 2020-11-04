@@ -1,0 +1,84 @@
+{% extends 'main/mainpage.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/income_operations.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+
+{% block title %}
+    <title>Расходные операции</title>
+{% endblock %}
+
+{% block content %}
+    
+    <div class="main_conteiner">
+
+        <div class="creation_operation_form">
+            <form method="post" action="">
+                {% csrf_token %}
+                
+                {% for field in add_spend_form %}
+                    {{ field }}
+                {% endfor %}
+                <input type="submit" value="ADD" class="operation_form_button">
+            </form>
+        </div>
+
+        <div class="operations_list_conteiner">
+
+            {% for operation in spends_operations %}
+                <hr class="separator_operation_string" noshade="">
+                <div class="operation_string_conteiner">
+                    
+                    <div class="operation_date">
+                        {{ operation.spend_date|date:"d.m.Y" }}
+                    </div>
+                    
+                    <div class="operation_article">
+                        {{ operation.spend_article }}
+                    </div>
+                    
+                    <div class="operation_acount">
+                        {{ operation.spend_acount }}
+                    </div>
+                    
+                    <div class="operation_amount">
+                        {{ operation.spend_amount }}
+                    </div>
+                    
+                    <div class="operation_comment">
+                        {{ operation.comment_for_spend_operation }}
+                    </div>
+                    
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+
+            {% if spends_operations.number != 1 %}
+                <a href="?page=1"> В начало</a>
+            {% else %}
+            <a href="?page={{ page }}">{{ page }}</a>
+            {% endif %}
+            
+            {% if spends_operations.has_previous %}
+                <a href="?page={{ income_operarions.previous_page_number }}">Назад</a>
+            {% endif %}
+
+            {% for page in spends_operations.paginator.page_range %}
+
+                <a href="?page={{ page }}">{{ page }}</a>
+
+            {% endfor %}
+
+            {% if spends_operations.has_next %}
+                <a href="?page={{ income_operarions.next_page_number }}">Дальше</a>
+                <a href="?page={{ income_operarions.paginator.num_pages }}">Последняя</a>
+            {% endif %}
+
+            Всего {{ spends_operations.paginator.num_pages  }}
+        </div>
+    </div>
+    {% endblock %}
