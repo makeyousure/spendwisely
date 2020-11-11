@@ -22,7 +22,7 @@
         </div>
 
         <div class="transaction_info">
-            <p>Сегодня ты внес "число" расходов на сумму "сумма" рублей</p>
+            <p>{{ header }}</p>
         </div>
 
         <div class="add_transaction">
@@ -62,7 +62,7 @@
                         </div>
                             
                         <div class="element_amount">
-                            {{ account.amount }} руб.
+                            {{ account.change_amount }} руб.
                         </div>
 
                         <div class="element_delete" title="Отменить действие нельзя">

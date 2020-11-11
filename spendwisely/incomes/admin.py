@@ -5,7 +5,10 @@ from .models import *
 admin.site.register(SpendCategory)
 admin.site.register(SpendArticle)
 admin.site.register(Income)
-admin.site.register(Account)
+
+
+class AccountAdmin(admin.ModelAdmin):
+    list_display = ('name', 'amount')
 
 
 class IncomeOperationAdmin(admin.ModelAdmin):
@@ -18,3 +21,4 @@ class SpendOperationAdmin(admin.ModelAdmin):
 
 admin.site.register(IncomeOperation, IncomeOperationAdmin)
 admin.site.register(SpendOperation, SpendOperationAdmin)
+admin.site.register(Account, AccountAdmin)

@@ -37,6 +37,20 @@ class Account(models.Model):
     name = models.CharField(verbose_name="Счет", max_length=50)
     amount = models.DecimalField(verbose_name="Остаток", max_digits=10, decimal_places=2, default=0)
 
+    def change_amount(self):
+        start_amount = self.amount
+
+        get_income_operation_by_id = IncomeOperation.objects.filter(income_acount=self.id)
+        get_spend_operation_by_id = SpendOperation.objects.filter(spend_acount=self.id)
+
+        for operation in get_income_operation_by_id:
+            start_amount += operation.income_amount
+
+        for operation in get_spend_operation_by_id:
+            start_amount -= operation.spend_amount
+
+        return start_amount
+
     def __str__(self):
         return self.name
 

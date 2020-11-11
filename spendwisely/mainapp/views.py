@@ -1,14 +1,14 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from mainapp.forms import CreateAccForm
-from incomes.models import Account
-from mainapp.main_services import set_current_amount_of_account
+from incomes.models import Account, IncomeOperation, SpendOperation
+from mainapp.main_services import show_info_about_today
 
 
 def show_main_page(request):
     accounts = Account.objects.all()
-    context = {"accounts": accounts}
+    header = show_info_about_today()
+    context = {"accounts": accounts, 'header': header}
     return render(request, template_name="main/mainpage.html", context=context)
 
 

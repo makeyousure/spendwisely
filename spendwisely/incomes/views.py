@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
 from .forms import CreateIncomeCategory, CreateIncomeOperation
-from .models import Income, IncomeOperation
+from .models import Income, IncomeOperation, Account
 
 
 def show_all_inclome_category(request):
@@ -37,6 +37,7 @@ def show_income_operations_list(request):
             return redirect('list_of_income_operations')
     else:
         add_income_operation_form = CreateIncomeOperation()
+
     all_income_operations = IncomeOperation.objects.all().order_by('-income_date')
     paginator = Paginator(all_income_operations, 10)
     page_number = request.GET.get('page')
